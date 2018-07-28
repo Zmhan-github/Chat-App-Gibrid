@@ -27,7 +27,7 @@ export default function (props) {
   // Framework7 parameters here
   const f7params = {
     id: 'io.framework7.testapp', // App bundle ID
-    name: 'Framework7', // App name
+    name: 'Chat App', // App name
     theme: 'auto', // Automatic theme detection
     // App routes
     routes,
@@ -38,10 +38,10 @@ export default function (props) {
       {/* Statusbar */}
       <Statusbar />
 
-      {/* Left Panel */}
+      {/* Left Panel
       <Panel left cover themeDark>
         <View url="/panel-left/" />
-      </Panel>
+      </Panel> */}
 
       {/* Right Panel */}
       <Panel right reveal themeDark>
