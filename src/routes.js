@@ -6,6 +6,7 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import PanelLeftPage from './components/pages/PanelLeftPage';
 import PanelRightPage from './components/pages/PanelRightPage';
 import Login from './components/pages/Login';
+import Dialog from './components/pages/Dialog'
 
 export default [
   {
@@ -23,10 +24,15 @@ export default [
   {
     path: '/friends/',
     component: Friends,
+    context: 'Hello Context friends'
   },
   {
     path: '/login/',
     component: Login,
+  },
+  {
+    path: '/dialog/:id',
+    component: Dialog
   },
   {
     path: '/form/',

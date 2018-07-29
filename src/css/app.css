@@ -1,1 +1,9 @@
 /* Your app styles here */
+
+.md .list {
+  margin: 0;
+}
+
+.ios .list {
+  margin: 0;
+}
