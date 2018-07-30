@@ -23,23 +23,21 @@ class Friends extends Component {
     }
 
     this.socket.emit('uid', msg);
-    // this.props.f7router.params.defaultState.friends = this.state.friends;
-    // this.props.f7router.params.defaultState.user = this.state.user;
-
-    // let self = this;
-    // this.props.f7router.params.defaultState.ws.onopen = () => {
-    //   console.log('Соединение подключено...');
-    //   self.props.f7router.params.defaultState.ws.send(JSON.stringify({uid: id}));
-    // };
-
-    // this.props.f7router.params.defaultState.ws.onclose = () => {
-    //   console.log('Соединение отключилось...');
-    // };
-
   }
-  componentDidMount() {
 
-    let self = this;
+  componentDidMount() {
+    const self = this;
+    const app = self.$f7;
+    console.log("dataParse: ", app.data.token);
+
+    this.$request.setup({
+      contentType: 'application/json'
+    })
+
+    // this.$request.post(httpAuth + "/auth", JSON.stringify(data), function (data) {
+    //   var dataParse = JSON.parse(data);
+    // });
+
 
     this.$request.get('http://otau.org/main/cors', { foo:'bar', id:5 }, function (data) {
       var dataParse = JSON.parse(data);

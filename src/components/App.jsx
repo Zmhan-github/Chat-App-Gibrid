@@ -15,11 +15,6 @@ export default function (props) {
     id: 'io.framework7.testapp', // App bundle ID
     name: 'Chat App', // App name
     theme: 'auto', // Automatic theme detection
-    state: {
-      friends: null,
-      user: null,
-      ws: new WebSocket('wss://echo.websocket.org')
-    },
     // App routes
     routes,
   };
@@ -34,7 +29,7 @@ export default function (props) {
       </Panel>
 
       {/* Main View */}
-      <View defaultState={f7params.state} id="main-view" url="/" main className="ios-edges"/>
+      <View id="main-view" url="/login/" main className="ios-edges"/>
 
     </App>
   );

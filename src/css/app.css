@@ -7,3 +7,19 @@
 .ios .list {
   margin: 0;
 }
+
+/* LOGIN PAGE */
+
+.md .login-screen-content .list-button {
+  text-align: center;
+  color: #fff;
+  border-radius: 36px;
+  background: #3fafef;
+}
+
+.ios .login-screen-content .list-button {
+  text-align: center;
+  color: #fff;
+  border-radius: 36px;
+  background: #3fafef;
+}

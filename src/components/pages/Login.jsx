@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Page,  List, ListButton, ListItem, Input, LoginScreenTitle, Label, BlockFooter } from 'framework7-react';
 
+import { httpAuth } from './../../configUrl'
+
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
+      phone: '',
       password: '',
     };
   }
@@ -18,9 +20,9 @@ class Login extends Component {
         <LoginScreenTitle>Login</LoginScreenTitle>
         <List form>
           <ListItem>
-            <Label>Username</Label>
-            <Input type="text" placeholder="Your username" onInput={(e) => {
-              this.setState({ username: e.target.value});
+            <Label>Phone</Label>
+            <Input type="number" placeholder="Your phone" onInput={(e) => {
+              this.setState({ phone: e.target.value});
             }}></Input>
           </ListItem>
           <ListItem>
@@ -31,8 +33,9 @@ class Login extends Component {
           </ListItem>
         </List>
         <List>
-          <ListButton onClick={this.signIn.bind(this)}>Sign In</ListButton>
-          <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
+          <ListButton onClick={this.signIn.bind(this)}>ВОЙТИ</ListButton>
+          <ListItem link="/register/" title="Регистрация" view="#main-view" panelClose></ListItem>
+          <BlockFooter></BlockFooter>
         </List>
       </Page>
     )
@@ -41,9 +44,38 @@ class Login extends Component {
     const self = this;
     const app = self.$f7;
     const router = self.$f7router;
-    app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-      router.back();
+
+    let data = this.state;
+
+    this.$request.setup({
+      contentType: 'application/json'
+    })
+
+    console.log("send ", data)
+
+    this.$request.post(httpAuth + "/auth", JSON.stringify(data), function (data) {
+      var dataParse = JSON.parse(data);
+
+      console.log("Auth data ", dataParse)
+
+      if (dataParse.success){
+        app.data.token = dataParse.success.result.token;
+        app.dialog.alert(`SUCCESS`, () => {
+          router.navigate("/friends/");
+
+        });
+      }
+
+      if (dataParse.error){
+        console.log("router", app.data.token = dataParse);
+        app.dialog.alert(`${dataParse.error.message}`, () => {
+          // router.back();
+        });
+      }
+
     });
+
+
   }
 }
 
